@@ -1,0 +1,30 @@
+var loadFramework = function(pluginRoot) {
+    if (NSClassFromString('Sketch9PatchPlugin') == null) {
+        var mocha = [Mocha sharedRuntime];
+        log("Looking for framework at: " + pluginRoot )
+        return [mocha loadFrameworkWithName:"Sketch9Patch" inDirectory:pluginRoot];
+    } else {
+        log("Framework is already loaded");
+        return true;
+    }
+}
+
+var onRun = function(context) {
+    var doc = context.document;
+
+    try {
+        var pluginRoot = context.scriptPath.stringByDeletingLastPathComponent();
+
+        var loadFrameworkResult = loadFramework(pluginRoot);
+        log("Framework loaded: " + loadFrameworkResult);
+
+        if (loadFrameworkResult) {
+            var sketch9PatchPlugin = [[Sketch9PatchPlugin alloc] init];
+            [sketch9PatchPlugin processDocument:doc selection:context.selection];
+        }
+    } catch (err) {
+        doc.showMessage("Unknown error");
+        log(err);
+    }
+}
+

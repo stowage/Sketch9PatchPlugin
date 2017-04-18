@@ -1,0 +1,25 @@
+{
+    "name": "Sketch 9-Patch Plugin",
+    "description" : "Sketch 9-Patch Plugin",
+    "author" : "Sergey Fedoseev",
+    "authorEmail" : "sergsf888@gmail.com",
+    "homepage": "https://github.com/stowage/Sketch9Patch",
+    "version" : "1.0.0",
+    "updateURL": "https://github.com/stowage/Sketch9Patch",
+    "identifier" : "io.stowage.Sketch9Patch",
+    "compatibleVersion": "43",
+    "bundleVersion": "1",
+    "commands" : [
+        {
+            "script" : "Sketch9Patch.cocoascript",
+            "shortcut" : "cmd 9",
+            "name" : "Create/Edit 9-Patch",
+            "identifier" : "launchPlugin"
+        }
+    ],
+    "menu" : {
+        "items" : [
+            "launchPlugin"
+        ]
+    }
+}
